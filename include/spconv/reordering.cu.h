@@ -16,7 +16,8 @@
 #define REORDERING_CU_H_
 #include <THC/THCAtomics.cuh>
 #include <THC/THCNumerics.cuh>
-#include <cuda_fp16.h>
+#include <cuda_fp16.h> 
+//cuda_fp16.h为网络fp16的实现
 #include <tensorview/kernel_utils.h>
 
 #if PYTORCH_VERSION < 10500
@@ -367,6 +368,7 @@ __global__ void batchScatterAddGenericKernel(T *outFeatures, const T *buffer,
                                              int feature_offset, int numPlanes,
                                              int indice_batch_stride,
                                              int feature_batch_stride) {
+  // important alsun
   // batch scatter add is greatly slower than native scatter when the number of
   // points is large. this may due to atomicAdd?
   // batch scatter add is greatly faster than native when the number of points
